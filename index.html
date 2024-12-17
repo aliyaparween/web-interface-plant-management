@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap");
     </style>
@@ -18,23 +20,130 @@
         <div class="cards">
           <div class="card">
             <p>Rain</p>
-            <div class="inner-box"></div>
+            <div class="inner-box">
+              <span>No</span>
+            </div>
           </div>
           <div class="card">
             <p>Light Intensity</p>
-            <div class="inner-box"></div>
+            <div class="inner-box">
+              <span>60%</span>
+            </div>
           </div>
           <div class="card">
             <p>Soil Moisture</p>
-            <div class="inner-box"></div>
+            <div class="inner-box">
+              <span>65%</span>
+            </div>
           </div>
           <div class="card">
             <p>Water Level</p>
-            <div class="inner-box"></div>
+            <div class="inner-box">
+              <span>45%</span>
+            </div>
           </div>
         </div>
-        <div class="last-box"></div>
+        <div class="last-box">
+          <div class="graph">
+            <p>Rain</p>
+            <canvas
+              id="rain"
+              style="width: 100%; height: 30vh; max-width: 700px"
+            ></canvas>
+          </div>
+          <div class="graph">
+            <p>Light Intensity</p>
+            <canvas
+              id="light"
+              style="width: 100%; height: 30vh; max-width: 700px"
+            ></canvas>
+          </div>
+          <div class="graph">
+            <p>Soil Moisture</p>
+            <canvas
+              id="moisture"
+              style="width: 100%; height: 30vh; max-width: 700px"
+            ></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </body>
+  <script>
+    const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+    const rainValues = [5, 6, 7, 7, 7, 12, 15, 14, 16, 25, 30];
+    const lightValues = [7, 8, 8, 6, 9, 15, 22, 21, 24, 30, 22];
+    const soilValues = [9, 8, 8, 5, 13, 16, 12, 18, 22, 27, 20];
+
+    new Chart("rain", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [
+          {
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "rgb(3, 135, 230)",
+            borderColor: "#0387e641",
+            data: rainValues,
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+        // scales: {
+        //   yAxes: [{ ticks: { min: 6, max: 16 } }],
+        // },
+      },
+    });
+
+    new Chart("light", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [
+          {
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "rgb(250, 183, 1)",
+            borderColor: "#fab80145",
+            data: lightValues,
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+        // scales: {
+        //   yAxes: [{ ticks: { min: 6, max: 16 } }],
+        // },
+      },
+    });
+
+    new Chart("moisture", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [
+          {
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "rgba(61, 15, 15, 0.808)",
+            borderColor: "#3d0f0f5a",
+            data: soilValues,
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+        // scales: {
+        //   yAxes: [{ ticks: { min: 6, max: 16 } }],
+        // },
+      },
+    });
+
+    // function resize() {
+    //   myChart.resize(1000, 800);
+    // }
+    // resize();
+  </script>
 </html>
