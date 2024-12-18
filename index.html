@@ -146,4 +146,16 @@
     // }
     // resize();
   </script>
+  <script>
+    setInterval(() => {
+      fetch('http://192.168.73.62:80/data') // Replace with your Pico W IP
+        .then(res => res.json())
+        .then(data => {
+          document.querySelector('.card:nth-child(1) .inner-box span').textContent = data.rain ? "Yes" : "No";
+          document.querySelector('.card:nth-child(2) .inner-box span').textContent = data.light + "%";
+          document.querySelector('.card:nth-child(3) .inner-box span').textContent = data.moisture + "%";
+          // And so on for water level or pump status if available
+        });
+    }, 2000);
+    </script>
 </html>
