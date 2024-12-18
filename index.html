@@ -148,7 +148,12 @@
   </script>
   <script>
     setInterval(() => {
-      fetch('http://192.168.73.62:80/data') // Replace with your Pico W IP
+      fetch('http://192.168.73.62:80/data', {
+      method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+      }) 
         .then(res => res.json())
         .then(data => {
           document.querySelector('.card:nth-child(1) .inner-box span').textContent = data.rain ? "Yes" : "No";
